@@ -19,6 +19,10 @@ public interface OurWebDriver extends WebDriver {
 
     WebElement waitForVisible(By by);
 
+    WebElement waitForClickable(String selector);
+
+    WebElement waitForClickable(By by);
+
     void scrollToElement(WebElement element);
 
     void waitForAjax();

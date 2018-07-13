@@ -52,6 +52,16 @@ public class OurChromeDriver extends ChromeDriver implements OurWebDriver {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
+    public WebElement waitForClickable(final String selector) {
+        final WebDriverWait wait = new WebDriverWait(browser, IMPLICIT_WAIT_TIMEOUT);
+        return wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(selector)));
+    }
+
+    public WebElement waitForClickable(final By by) {
+        final WebDriverWait wait = new WebDriverWait(browser, IMPLICIT_WAIT_TIMEOUT);
+        return wait.until(ExpectedConditions.elementToBeClickable(by));
+    }
+
     public void scrollToElement(final WebElement element) {
         ((JavascriptExecutor) browser).executeScript("arguments[0].scrollIntoView(true);", element);
     }
