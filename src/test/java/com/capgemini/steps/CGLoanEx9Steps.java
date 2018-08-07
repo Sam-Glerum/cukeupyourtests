@@ -7,8 +7,11 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -45,6 +48,9 @@ public class CGLoanEx9Steps {
     public void theCustomerReceivesTheInformationText(final String text) throws Throwable {
         browser.waitForVisible(By.cssSelector("button.close"));
         assertThat(browser.findElement(By.cssSelector("p#tiptext")).getText(), is(text));
+        //Store a file in my temp folder
+        File scrFile = ((TakesScreenshot) browser).getScreenshotAs(OutputType.FILE);
+        System.out.println("Screenshot stored at: " + scrFile.getAbsolutePath());
     }
 
     @Given("^I want a car loan$")
