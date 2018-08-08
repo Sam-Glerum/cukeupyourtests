@@ -1,4 +1,4 @@
-Testnet Zomer Workshop
+Cuke-Up Your Tests
 ==================
 
 ## Download & Install:

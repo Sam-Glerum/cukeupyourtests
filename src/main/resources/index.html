@@ -97,12 +97,12 @@
         <table>
             <tr>
                 <td>Chosen loan type:</td>
-                <td id="{{rid2}}:chosenLoanType">{{loanType}}
+                <td id="{{rid2}}chosenLoanType">{{loanType}}
                 <td>
             </tr>
             <tr>
                 <td>Amount to borrow (euro):</td>
-                <td id="{{rid}}:chosenAmount">{{amount}}
+                <td id="{{rid}}chosenAmount">{{amount}}
                 <td>
             </tr>
         </table>
@@ -358,8 +358,8 @@
         $scope.age = function(dob){
             return (Date.now()-Date.parse(dob))/(365.25*24*3600000);
         };
-		$scope.rid = 'cg';
-		$scope.rid2 = 'cg';
+		$scope.rid = '';
+		$scope.rid2 = '';
     });
 
     bdd.directive('modal', function () {

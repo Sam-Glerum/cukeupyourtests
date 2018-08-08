@@ -23,7 +23,7 @@ public class OurIEDriver extends InternetExplorerDriver implements OurWebDriver 
     }
 
     static OurIEDriver getBrowser() {
-        System.setProperty("webdriver.ie.driver", getDriverFile("ie"));
+        System.setProperty("webdriver.ie.driver", getDriverFile("internetexplorer"));
         if (browser == null) {
             browser = new OurIEDriver();
         } else if (browser.getSessionId() == null) {
