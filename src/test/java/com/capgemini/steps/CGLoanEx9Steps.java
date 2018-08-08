@@ -2,6 +2,7 @@ package com.capgemini.steps;
 
 import com.capgemini.ourWebdriver.BrowserFactory;
 import com.capgemini.ourWebdriver.OurWebDriver;
+import com.capgemini.pages.HomePage;
 import com.github.javafaker.Faker;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -22,9 +23,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CGLoanEx9Steps {
     private final OurWebDriver browser;
+    private final HomePage homePage;
 
     public CGLoanEx9Steps() throws MalformedURLException {
         browser = BrowserFactory.getWebDriver();
+        homePage = new HomePage();
     }
 
     @Given("^the customer wants information about a loan$")
@@ -35,22 +38,13 @@ public class CGLoanEx9Steps {
 
     @When("^the customer wants a loan for \"([^\"]*)\"$")
     public void theCustomerWantsALoanFor(final String loanType) throws Throwable {
-        final List<WebElement> myListOfElements = browser.findElements(By.cssSelector("div[ng-hide='page!=1'] button.btn"));
-        for (final WebElement mySingleElement : myListOfElements) {
-            if (mySingleElement.getText().equals(loanType)) {
-                mySingleElement.click();
-                break;
-            }
-        }
+        homePage.clickINeedALoanFor(loanType);
     }
 
     @Then("^the customer receives the information text \"([^\"]*)\"$")
     public void theCustomerReceivesTheInformationText(final String text) throws Throwable {
-        browser.waitForVisible(By.cssSelector("button.close"));
-        assertThat(browser.findElement(By.cssSelector("p#tiptext")).getText(), is(text));
-        //Store a file in my temp folder
-        File scrFile = ((TakesScreenshot) browser).getScreenshotAs(OutputType.FILE);
-        System.out.println("Screenshot stored at: " + scrFile.getAbsolutePath());
+        homePage.validateTipText(text);
+        homePage.takeScreenshot("tipText");
     }
 
     @Given("^I want a car loan$")
@@ -101,7 +95,6 @@ public class CGLoanEx9Steps {
 
     @Then("^I can get it$")
     public void iCanGetIt() throws Throwable {
-
         assertThat(browser.findElement(By.cssSelector("[ng-hide='page!=4'] h2")).getText(), is("Confirm data"));
     }
 }

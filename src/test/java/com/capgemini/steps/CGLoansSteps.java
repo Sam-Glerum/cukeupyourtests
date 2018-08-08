@@ -2,6 +2,8 @@ package com.capgemini.steps;
 
 import com.capgemini.ourWebdriver.BrowserFactory;
 import com.capgemini.ourWebdriver.OurWebDriver;
+import com.capgemini.pages.HomePage;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -30,10 +32,16 @@ public class CGLoansSteps {
         Thread.sleep(1000);
     }
 
+    @When("^I select a loan type$")
+    public void iSelectLoanTypePersonalLoan() throws Throwable {
+        HomePage homePage = new HomePage();
+        homePage.selectLoanTypePersonalLoan();
+    }
+
     @When("^I select loan type 'Car-loan'$")
     public void iSelectLoanTypeCarLoan() throws Throwable {
-        browser.findElement(By.cssSelector("input[value='Car-loan']")).click();
-        Thread.sleep(1000);
+        HomePage homePage = new HomePage();
+        homePage.selectLoanTypeCarLoan();
     }
 
     @When("^the amount I want to borrow is '(\\d+)'$")
@@ -120,4 +128,5 @@ public class CGLoansSteps {
         assertThat(browser.waitForVisible(By.cssSelector("[ng-hide='page!=4'] h2")).getText(), is("Confirm data"));
         Thread.sleep(5000);
     }
+
 }

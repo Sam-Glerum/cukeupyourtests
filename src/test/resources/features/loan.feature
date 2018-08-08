@@ -41,3 +41,7 @@ Feature: Loan request
     Given I want a car loan
     When I loan the amount of "5000" euro
     Then I can get it
+
+    Scenario: highlight
+      Given I have opened the loan request page
+      When I higlight and take a screenshot
